@@ -45,6 +45,30 @@ def consultar_municipio():
     municipio = int(input("Ingrese el número del municipio que desea consultar\n"))
     # imprimir la información del municipio indicado
     print(f"Municipio: {precipitaciones[municipio][0]}\nEnero: {precipitaciones[municipio][1]}\nFebrero: {precipitaciones[municipio][2]}\nMarzo: {precipitaciones[municipio][3]}\nAbril: {precipitaciones[municipio][4]}\nMayo: {precipitaciones[municipio][5]}\nJunio: {precipitaciones[municipio][6]}")
+
+def consultar_mayor_precipitacion():
+    # pedir al usuario que seleccione un mes
+    print("Seleccione el mes en el que desea encontrar la mayor precipitación\n1. Enero\n2. Febrero\n3. Marzo\n4. Abril\n5.Mayo\n6. Junio")
+    opcion = int(input())
+    # encontrar mayor precipitación
+    nombre_municipio = ""
+    mayor_precipitacion = 0
+    for i in range(len(precipitaciones)):
+        if precipitaciones[i][opcion] > mayor_precipitacion:
+            nombre_municipio = precipitaciones[i][0]
+            mayor_precipitacion = precipitaciones[i][opcion]
+    print(f"El municipio {nombre_municipio} tiene la mayor precipitación en el mes {opcion} con {mayor_precipitacion} mm")
+
+def consultar_promedio():
+    print("")
+    # imprimir el nombre de todos los municipios enumerándolos
+    for i in range(len(precipitaciones)):
+        print(i, precipitaciones[i][0])
+    # pedir el número del municipio a consultar
+    municipio = int(input("Ingrese el número del municipio que desea consultar\n"))
+    # calcular el promedio
+    promedio_municipio = (precipitaciones[municipio][1] + precipitaciones[municipio][2] + precipitaciones[municipio][3] + precipitaciones[municipio][4] + precipitaciones[municipio][5] + precipitaciones[municipio][6])/6
+    print(f"El promedio de precipitaciones en mm en el municipio {precipitaciones[municipio][0]} es {promedio_municipio}")
     
 while True:
     opcion = int(input("\n1. Consultar municipio\n2. Consultar mayor precipitación\n3. Consultar promedio de precipitación\n0. Salir\n"))
@@ -52,9 +76,11 @@ while True:
         # llamar a la función consultar_municipio()
         consultar_municipio()
     elif opcion == 2:
-        print("2")
+        # llamar a la función consultar_mayor_precipitacion()
+        consultar_mayor_precipitacion()
     elif opcion == 3:
-        print("3")
+        # llamar a la función consultar_promedio()
+        consultar_promedio()
     # cerrar el programa
     elif opcion == 0:
         break
